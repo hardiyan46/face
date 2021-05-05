@@ -1,10 +1,13 @@
 import cv2
+cam = cv2.VideoCapture(0)
 
-cam = cv2.VideoCapture(1)
 while True:
-    ret, frame = cam.read()
-    cv2.imshow('my face', frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    retV, frame = cam.read()
+    abu = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  #merubah dari color ke abu abu
+    cv2.imshow('my face', frame)   #menampilkan windows dengan nama frame
+    cv2.imshow('my face2', abu)
+    k = cv2.waitKey(1) & 0xFF
+    if  k == 27 or k == ord('q'): #key close dengan Q dan ESC
         break
 cam.release()
 cv2.destroyAllWindows()
