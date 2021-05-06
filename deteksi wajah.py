@@ -1,6 +1,6 @@
 """
 https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml
-
+https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
 """
 import cv2
 cam = cv2.VideoCapture(0)
