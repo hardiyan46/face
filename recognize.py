@@ -3,13 +3,13 @@ https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_front
 https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
 """
 import cv2, os
-wajahdir = 'assets'
+wajahdir = 'assets' #folder penyimpanan data wajah
 cam = cv2.VideoCapture(0)
 cam.set(3, 640)  # merubah lebar
 cam.set(4, 480)  # merubah tinggi
 facedetektor = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')  #baca algoritma face detektor
 eyedetektor = cv2.CascadeClassifier('haarcascade_eye.xml')   #baca algoritma eye detektor
-faceid = input('Ketikan Nama Lengkap Anda : ')
+faceid = input('Ketikan Nama Lengkap Anda : ')  #input nama
 print ("Mohon tunggu proses pengambilan data wajah anda selesai...")
 ambildata = 1
 while True:
@@ -18,9 +18,9 @@ while True:
     face = facedetektor.detectMultiScale(abu, 1.3, 5)  # frame, scalefactor,
     for (x, y, w, h) in face:
         frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 255), 2)
-        namafile = 'wajah.' +str(faceid)+'.' +str(ambildata)+'.jpg'
-        cv2.imwrite(wajahdir+'/'+namafile,frame)
-        ambildata += 1
+        namafile = 'wajah.' +str(faceid)+'.' +str(ambildata)+'.jpg'  #simpan dengan direktory dan path .jpg
+        cv2.imwrite(wajahdir+'/'+namafile,frame) #simpan file pada direktory
+        ambildata += 1  #data di + 1
         roiabu = abu[y:y + h, x:x + w]
         roiwarna = frame[y:y + h, x:x + w]
         eye = eyedetektor.detectMultiScale(roiabu)
@@ -32,7 +32,7 @@ while True:
     k = cv2.waitKey(1) & 0xFF  #Variabel keypress
     if k == 27 or k == ord('q'):  # key close dengan Q dan ESC
         break
-    elif ambildata>5:
+    elif ambildata>5:  #ambil data sebanyak 5
         break
 print("pengambilan data wajah sudah selesai" )
 cam.release()
